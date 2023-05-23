@@ -1,9 +1,15 @@
 import unittest
+from main import Calculator
 
+class TestCalculator(unittest.TestCase):
 
-class MyTestCase(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
+    def setUp(self):
+        self.calc = Calculator()
+    def test_add(self):
+        data = (3,5)
+        #The * operator is used to unpack the contents of data as arguments to the add method.
+        result = self.calc.add(*data)
+        self.assertEqual(result, 8,"Failed on adding two positive numbers.")
 
 
 if __name__ == '__main__':
