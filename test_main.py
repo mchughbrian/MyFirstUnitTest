@@ -89,5 +89,34 @@ class TestCalculator(unittest.TestCase):
             data = [None, 1]
             self.calc.multiply(*data)
 
+    def test_divide(self):
+        data = [25, 5]
+        # The * operator is used to unpack the contents of data as arguments to the add method.
+        result = self.calc.divide(*data)
+        self.assertEqual(result, 5, "Failed on dividing two positive numbers.")
+
+        data = [-5, 1]
+        result = self.calc.divide(*data)
+        self.assertEqual(result, -5, "Failed on dividing a negative and a positive number.")
+
+        data = [-30, -5]
+        result = self.calc.divide(*data)
+        self.assertEqual(result, 6, "Failed on multiplying two negatives.")
+
+        #testing divide by zero
+        with self.assertRaises(ZeroDivisionError):
+            data = [-1, 0]
+            self.calc.divide(*data)
+
+        # Testing with a string input
+        with self.assertRaises(ValueError):
+            data = ['a', 1]
+            self.calc.divide(*data)
+
+        # Testing with None input
+        with self.assertRaises(ValueError):
+            data = [None, 1]
+            self.calc.divide(*data)
+
 if __name__ == '__main__':
     unittest.main()
